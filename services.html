@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الخدمات الإلكترونية | Liumexcode</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: linear-gradient(135deg, #0d0d2b, #1b1b4d);
+      color: #fff;
+      margin: 0;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #00bfff;
+      margin-bottom: 2rem;
+    }
+
+    .services-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .service {
+      background: rgba(255,255,255,0.08);
+      border-radius: 15px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      transform: scale(1.05);
+      background: rgba(255,255,255,0.15);
+    }
+
+    h3 {
+      color: #00bfff;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    button {
+      background: #00bfff;
+      border: none;
+      color: #fff;
+      padding: 0.7rem 1.5rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0095cc;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    a.back:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>الخدمات الإلكترونية 💼</h1>
+
+  <div class="services-container">
+    <div class="service">
+      <h3>فتح أجهزة سامسونج</h3>
+      <p>خدمة فتح قفل الشبكة لجميع أجهزة سامسونج الحديثة.</p>
+      <button onclick="requestService('فتح أجهزة سامسونج')">طلب الخدمة</button>
+    </div>
+
+    <div class="service">
+      <h3>تفليش أجهزة Infinix</h3>
+      <p>تركيب سوفت وير أصلي أو مخصص لجميع أجهزة Infinix.</p>
+      <button onclick="requestService('تفليش أجهزة Infinix')">طلب الخدمة</button>
+    </div>
+
+    <div class="service">
+      <h3>إزالة FRP</h3>
+      <p>إزالة قفل حماية جوجل (FRP) لجميع الموديلات بسرعة وأمان.</p>
+      <button onclick="requestService('إزالة FRP')">طلب الخدمة</button>
+    </div>
+
+    <div class="service">
+      <h3>خدمات روت وتعديل النظام</h3>
+      <p>إضافة صلاحيات الروت وتخصيص النظام بما يناسبك.</p>
+      <button onclick="requestService('خدمات روت وتعديل النظام')">طلب الخدمة</button>
+    </div>
+  </div>
+
+  <a href="dashboard.html" class="back">🔙 العودة للوحة التحكم</a>
+
+  <script>
+    function requestService(serviceName) {
+      const subject = encodeURIComponent("طلب خدمة: " + serviceName);
+      const body = encodeURIComponent("مرحبًا فريق Liumexcode، أود طلب خدمة: " + serviceName + ".");
+      window.location.href = `mailto:liumexcode@gmail.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+</body>
+</html>
