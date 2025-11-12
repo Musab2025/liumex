@@ -1,147 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الخدمات الإلكترونية | Liumexcode</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #0d0d2b, #1b1b4d);
-      color: #fff;
-      margin: 0;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    h1 {
-      color: #00bfff;
-      margin-bottom: 2rem;
-    }
-
-    .services-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .service {
-      background: rgba(255,255,255,0.08);
-      border-radius: 15px;
-      padding: 1.5rem;
-      backdrop-filter: blur(10px);
-      transition: 0.3s;
-    }
-
-    .service:hover {
-      transform: scale(1.03);
-      background: rgba(255,255,255,0.15);
-    }
-
-    h3 {
-      color: #00bfff;
-    }
-
-    p {
-      color: #ccc;
-      font-size: 0.95rem;
-    }
-
-    button {
-      background: #00bfff;
-      border: none;
-      color: #fff;
-      padding: 0.7rem 1.5rem;
-      border-radius: 10px;
-      margin-top: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #0095cc;
-    }
-
-    a.back {
-      display: inline-block;
-      margin-top: 2rem;
-      color: #aaa;
-      text-decoration: none;
-    }
-
-    a.back:hover {
-      color: #fff;
-    }
-  </style>
-</head>
-<body>
-  <h1>الخدمات الإلكترونية 💼</h1>
-
-  <div class="services-container">
-    <div class="service">
-      <h3>فتح أجهزة سامسونج</h3>
-      <p>خدمة فتح قفل الشبكة ودعم إعدادات الشبكة لأجهزة سامسونج الحديثة.</p>
-      <button onclick="requestService('فتح أجهزة سامسونج')">طلب الخدمة</button>
-    </div>
-
-    <div class="service">
-      <h3>تفليش أجهزة Infinix</h3>
-      <p>تركيب سوفت وير رسمي أو مخصص لجميع أجهزة Infinix بسرعة واحتراف.</p>
-      <button onclick="requestService('تفليش أجهزة Infinix')">طلب الخدمة</button>
-    </div>
-
-    <div class="service">
-      <h3>حذف FRP — سامسونج وهونر</h3>
-      <p>خدمة حذف قفل FRP لأجهزة سامسونج وهونر (خدمة احترافية وفق سياسات العميل).</p>
-      <button onclick="requestService('حذف FRP لأجهزة سامسونج وهونر')">طلب الخدمة</button>
-    </div>
-
-    <div class="service">
-      <h3>فتح iCloud</h3>
-      <p>خدمة المعالجة المتعلقة بحساب iCloud (فتح/حل مشاكل تفعيل iCloud) للأجهزة المؤهلة.</p>
-      <button onclick="requestService('فتح/حل iCloud')">طلب الخدمة</button>
-    </div>
-
-    <div class="service">
-      <h3>خدمات روت وتعديل النظام</h3>
-      <p>إضافة صلاحيات الروت، تثبيت رومات مخصصة وتعديلات الأداء.</p>
-      <button onclick="requestService('خدمات روت وتعديل النظام')">طلب الخدمة</button>
-    </div>
-
-    <div class="service">
-      <h3>خدمة الدعم الفني والاستشارة</h3>
-      <p>مشورة فنية عن المشاكل والبدائل والتكلفة المتوقعة لكل خدمة.</p>
-      <button onclick="requestService('طلب دعم فني / استشارة')">طلب الخدمة</button>
-    </div>
-  </div>
-
-  <a href="dashboard.html" class="back">🔙 العودة للوحة التحكم</a>
-
-  <script>
-    function requestService(serviceName) {
-      // نص البداية في الإيميل — المستخدم يقدر يضيف تفاصيل بعد فتح البريد
-      const subject = encodeURIComponent("طلب خدمة: " + serviceName);
-      const bodyLines = [
-        "مرحبًا فريق Liumexcode،",
-        "",
-        "أود طلب الخدمة التالية: " + serviceName,
-        "",
-        "الاسم: ",
-        "الهاتف: ",
-        "تفاصيل أو رقم الجهاز (إن وجد): ",
-        "",
-        "شكراً لكم."
-      ];
-      const body = encodeURIComponent(bodyLines.join("\n"));
-      window.location.href = `mailto:liumexcode@gmail.com?subject=${subject}&body=${body}`;
-    }
-  </script>
-</body><!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>الخدمات الإلكترونية | Liumexcode</title>
@@ -162,28 +21,30 @@
       color: #00bfff;
       font-weight: 600;
     }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 2rem;
-    }
-    .card {
+    .service {
       background: rgba(255,255,255,0.08);
+      margin: 1rem auto;
       padding: 1.5rem;
       border-radius: 15px;
+      width: 90%;
+      max-width: 400px;
+      text-align: right;
+      direction: rtl;
       backdrop-filter: blur(10px);
       transition: 0.3s;
     }
-    .card:hover {
+    .service:hover {
       transform: translateY(-5px);
       background: rgba(255,255,255,0.12);
+    }
+    .service h3 {
+      color: #00bfff;
+      margin-top: 0;
     }
     .price {
       color: #00bfff;
       font-weight: bold;
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
+      font-size: 1.1rem;
     }
     button {
       background: #00bfff;
@@ -195,58 +56,138 @@
       margin-top: 1rem;
       transition: 0.3s;
       font-size: 1rem;
+      width: 100%;
     }
     button:hover {
       background: #0095cc;
+    }
+    .form-box {
+      display: none;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+    input::placeholder {
+      color: #ccc;
+    }
+    .success {
+      color: #00ff99;
+      font-weight: bold;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
   <header>💻 الخدمات الإلكترونية — Liumexcode</header>
 
-  <section class="services">
+  <section id="services">
 
-    <div class="card">
-      <h3>فتح أجهزة سامسونج</h3>
+    <!-- خدمة فتح سامسونج -->
+    <div class="service">
+      <h3>🔓 فتح أجهزة سامسونج</h3>
       <p>مدة التنفيذ: 1-5 دقائق</p>
       <p>المطلوب: IMEI</p>
       <p class="price">السعر: 16$</p>
-      <button onclick="sendRequest('فتح أجهزة سامسونج')">طلب الخدمة</button>
+      <button onclick="toggleForm('samsungForm')">طلب الخدمة</button>
+      <div id="samsungForm" class="form-box">
+        <input type="text" id="imeiSamsung" placeholder="أدخل رقم IMEI" required>
+        <button onclick="submitRequest('samsung')">إرسال الطلب</button>
+        <p id="successSamsung" class="success"></p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>تفليش أجهزة Infinix</h3>
-      <p>مدة التنفيذ: 20 دقيقة</p>
-      <p>المطلوب: حماية الجهاز</p>
+    <!-- خدمة فتح هونر -->
+    <div class="service">
+      <h3>🔓 إزالة FRP لهواتف هونر</h3>
+      <p>مدة التنفيذ: 10 دقائق</p>
+      <p>المطلوب: الرقم التسلسلي SN</p>
       <p class="price">السعر: 10$</p>
-      <button onclick="sendRequest('تفليش أجهزة Infinix')">طلب الخدمة</button>
+      <button onclick="toggleForm('honorForm')">طلب الخدمة</button>
+      <div id="honorForm" class="form-box">
+        <input type="text" id="snHonor" placeholder="أدخل الرقم التسلسلي SN" required>
+        <button onclick="submitRequest('honor')">إرسال الطلب</button>
+        <p id="successHonor" class="success"></p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>فتح iCloud</h3>
+    <!-- خدمة iCloud -->
+    <div class="service">
+      <h3>🍏 فتح iCloud</h3>
       <p>مدة التنفيذ: 30 دقيقة</p>
       <p>المطلوب: الاسم + رقم الهاتف</p>
       <p class="price">السعر: 15$</p>
-      <button onclick="sendRequest('فتح iCloud')">طلب الخدمة</button>
+      <button onclick="toggleForm('icloudForm')">طلب الخدمة</button>
+      <div id="icloudForm" class="form-box">
+        <input type="text" id="icloudName" placeholder="الاسم الكامل" required>
+        <input type="text" id="icloudPhone" placeholder="رقم الهاتف" required>
+        <button onclick="submitRequest('icloud')">إرسال الطلب</button>
+        <p id="successIcloud" class="success"></p>
+      </div>
     </div>
 
-    <div class="card">
-      <h3>الدعم الفني والاستشارة</h3>
+    <!-- دعم فني -->
+    <div class="service">
+      <h3>🧩 الدعم الفني والاستشارة</h3>
       <p>مدة الرد: 5 دقائق</p>
       <p>الخدمة مجانية</p>
       <p class="price">السعر: 0$</p>
-      <button onclick="sendRequest('الدعم الفني')">طلب الخدمة</button>
+      <button onclick="toggleForm('supportForm')">طلب الخدمة</button>
+      <div id="supportForm" class="form-box">
+        <input type="text" id="supportMsg" placeholder="صف مشكلتك باختصار" required>
+        <button onclick="submitRequest('support')">إرسال الطلب</button>
+        <p id="successSupport" class="success"></p>
+      </div>
     </div>
 
   </section>
 
   <script>
-    function sendRequest(serviceName) {
-      const subject = encodeURIComponent("طلب خدمة: " + serviceName);
-      const body = encodeURIComponent("مرحباً، أود طلب خدمة " + serviceName + " من موقع Liumexcode.\n\nالرجاء تزويدي بالتفاصيل.");
-      window.location.href = `mailto:liumexcode@gmail.com?subject=${subject}&body=${body}`;
+    function toggleForm(id) {
+      const form = document.getElementById(id);
+      form.style.display = (form.style.display === "block") ? "none" : "block";
+    }
+
+    function submitRequest(type) {
+      let message = "";
+      if (type === "samsung") {
+        const imei = document.getElementById("imeiSamsung").value.trim();
+        if (!imei) return alert("الرجاء إدخال رقم IMEI");
+        message = `تم استلام طلب فتح سامسونج برقم IMEI: ${imei}`;
+        document.getElementById("successSamsung").innerText = message;
+      } 
+      else if (type === "honor") {
+        const sn = document.getElementById("snHonor").value.trim();
+        if (!sn) return alert("الرجاء إدخال الرقم التسلسلي SN");
+        message = `تم استلام طلب إزالة FRP لهاتف هونر برقم SN: ${sn}`;
+        document.getElementById("successHonor").innerText = message;
+      }
+      else if (type === "icloud") {
+        const name = document.getElementById("icloudName").value.trim();
+        const phone = document.getElementById("icloudPhone").value.trim();
+        if (!name || !phone) return alert("الرجاء إدخال الاسم ورقم الهاتف");
+        message = `تم استلام طلب فتح iCloud من ${name}، رقم الهاتف: ${phone}`;
+        document.getElementById("successIcloud").innerText = message;
+      }
+      else if (type === "support") {
+        const msg = document.getElementById("supportMsg").value.trim();
+        if (!msg) return alert("الرجاء كتابة الرسالة");
+        message = `تم استلام طلب الدعم الفني: ${msg}`;
+        document.getElementById("successSupport").innerText = message;
+      }
+      alert("✅ " + message);
     }
   </script>
 </body>
-</html>
 </html>
