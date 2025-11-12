@@ -37,7 +37,7 @@
     }
 
     .service:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       background: rgba(255,255,255,0.15);
     }
 
@@ -83,26 +83,38 @@
   <div class="services-container">
     <div class="service">
       <h3>فتح أجهزة سامسونج</h3>
-      <p>خدمة فتح قفل الشبكة لجميع أجهزة سامسونج الحديثة.</p>
+      <p>خدمة فتح قفل الشبكة ودعم إعدادات الشبكة لأجهزة سامسونج الحديثة.</p>
       <button onclick="requestService('فتح أجهزة سامسونج')">طلب الخدمة</button>
     </div>
 
     <div class="service">
       <h3>تفليش أجهزة Infinix</h3>
-      <p>تركيب سوفت وير أصلي أو مخصص لجميع أجهزة Infinix.</p>
+      <p>تركيب سوفت وير رسمي أو مخصص لجميع أجهزة Infinix بسرعة واحتراف.</p>
       <button onclick="requestService('تفليش أجهزة Infinix')">طلب الخدمة</button>
     </div>
 
     <div class="service">
-      <h3>إزالة FRP</h3>
-      <p>إزالة قفل حماية جوجل (FRP) لجميع الموديلات بسرعة وأمان.</p>
-      <button onclick="requestService('إزالة FRP')">طلب الخدمة</button>
+      <h3>حذف FRP — سامسونج وهونر</h3>
+      <p>خدمة حذف قفل FRP لأجهزة سامسونج وهونر (خدمة احترافية وفق سياسات العميل).</p>
+      <button onclick="requestService('حذف FRP لأجهزة سامسونج وهونر')">طلب الخدمة</button>
+    </div>
+
+    <div class="service">
+      <h3>فتح iCloud</h3>
+      <p>خدمة المعالجة المتعلقة بحساب iCloud (فتح/حل مشاكل تفعيل iCloud) للأجهزة المؤهلة.</p>
+      <button onclick="requestService('فتح/حل iCloud')">طلب الخدمة</button>
     </div>
 
     <div class="service">
       <h3>خدمات روت وتعديل النظام</h3>
-      <p>إضافة صلاحيات الروت وتخصيص النظام بما يناسبك.</p>
+      <p>إضافة صلاحيات الروت، تثبيت رومات مخصصة وتعديلات الأداء.</p>
       <button onclick="requestService('خدمات روت وتعديل النظام')">طلب الخدمة</button>
+    </div>
+
+    <div class="service">
+      <h3>خدمة الدعم الفني والاستشارة</h3>
+      <p>مشورة فنية عن المشاكل والبدائل والتكلفة المتوقعة لكل خدمة.</p>
+      <button onclick="requestService('طلب دعم فني / استشارة')">طلب الخدمة</button>
     </div>
   </div>
 
@@ -110,8 +122,20 @@
 
   <script>
     function requestService(serviceName) {
+      // نص البداية في الإيميل — المستخدم يقدر يضيف تفاصيل بعد فتح البريد
       const subject = encodeURIComponent("طلب خدمة: " + serviceName);
-      const body = encodeURIComponent("مرحبًا فريق Liumexcode، أود طلب خدمة: " + serviceName + ".");
+      const bodyLines = [
+        "مرحبًا فريق Liumexcode،",
+        "",
+        "أود طلب الخدمة التالية: " + serviceName,
+        "",
+        "الاسم: ",
+        "الهاتف: ",
+        "تفاصيل أو رقم الجهاز (إن وجد): ",
+        "",
+        "شكراً لكم."
+      ];
+      const body = encodeURIComponent(bodyLines.join("\n"));
       window.location.href = `mailto:liumexcode@gmail.com?subject=${subject}&body=${body}`;
     }
   </script>
