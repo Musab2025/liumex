@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Liumex Server — قائمة الطلبات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0e1630; --card:rgba(255,255,255,0.04); --accent:#00bfff;
+      --muted:#aab3c8; --glass:rgba(255,255,255,0.03);
+      --radius:14px; --text:#f3f6fb; font-family:'Cairo',sans-serif;
+    }
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071029,#0e1630);color:var(--text)}
+    header{padding:18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3aa0ff);display:flex;align-items:center;justify-content:center;color:#022033;font-weight:800}
+    .brand-title{font-weight:700;font-size:18px}
+    .container{max-width:900px;margin:20px auto;padding:0 16px}
+    h2{display:flex;justify-content:space-between;align-items:center;margin-top:0}
+    .btn-refresh{background:var(--accent);border:none;color:#022033;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+    .orders-list{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+    .order-card{background:var(--card);padding:14px;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;box-shadow:0 6px 20px rgba(0,0,0,0.3)}
+    .info{flex:1;min-width:220px}
+    .service{color:var(--accent);font-weight:700}
+    .status{font-size:14px;margin-top:4px}
+    .actions{display:flex;gap:8px;margin-top:8px}
+    .btn{padding:8px 12px;border:none;border-radius:8px;cursor:pointer;font-weight:600}
+    .done{background:#28c76f;color:#fff}
+    .delete{background:#ea5455;color:#fff}
+    /* Toast */
+    #toast{position:fixed;bottom:20px;right:20px;padding:14px 18px;border-radius:10px;font-weight:600;opacity:0;pointer-events:none;transition:.4s;font-size:14px}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateY(-10px)}
+    #toast.success{background:#28c76f;color:#fff;}
+    #toast.error{background:#ea5455;color:#fff;}
+    #toast.info{background:#ffb703;color:#000;}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="logo">LS</div>
+    <div>
+      <div class="brand-title">Liumex Server</div>
+      <div style="color:var(--muted);font-size:13px">قائمة الطلبات الجارية والمنجزة</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>
+      <span>📋 الطلبات</span>
+      <button class="btn-refresh" onclick="loadOrders()">🔄 تحديث القائمة</button>
+    </h2>
+    <section id="ordersList" class="orders-list"></section>
+  </main>
+
+  <div id="toast"></div>
+
+  <script>
+    function showToast(msg,type='success'){
+      const toast=document.getElementById('toast');
+      toast.className='show '+type;
+      toast.textContent=msg;
+      setTimeout(()=>toast.className=toast.className.replace('show',''),3000);
+    }
+
+    function loadOrders(){
+      const container=document.getElementById('ordersList');
+      container.innerHTML='';
+      const orders=JSON.parse(localStorage.getItem('orders')||'[]');
+      if(orders.length===0){
+        container.innerHTML='<p style="color:var(--muted);text-align:center;margin-top:30px;">لا توجد طلبات حالياً</p>';
+        return;
+      }
+      orders.forEach(o=>{
+        const div=document.createElement('div');
+        div.className='order-card';
+        div.innerHTML=`
+          <div class="info">
+            <div class="service">${o.service}</div>
+            <div>IMEI/SN: ${o.imei}</div>
+            <div class="status">الحالة: ${o.status}</div>
+          </div>
+          <div class="actions">
+            <button class="btn done" onclick="markDone(${o.id})">تم الإنجاز ✅</button>
+            <button class="btn delete" onclick="deleteOrder(${o.id})">حذف 🗑️</button>
+          </div>`;
+        container.appendChild(div);
+      });
+    }
+
+    function markDone(id){
+      const orders=JSON.parse(localStorage.getItem('orders')||'[]');
+      const order=orders.find(o=>o.id===id);
+      if(order){order.status='تم الإنجاز';localStorage.setItem('orders',JSON.stringify(orders));showToast('✅ تم تحديث الحالة','success');loadOrders();}
+    }
+
+    function deleteOrder(id){
+      let orders=JSON.parse(localStorage.getItem('orders')||'[]');
+      orders=orders.filter(o=>o.id!==id);
+      localStorage.setItem('orders',JSON.stringify(orders));
+      showToast('🗑️ تم حذف الطلب','error');
+      loadOrders();
+    }
+
+    window.onload=loadOrders;
+  </script>
+</body>
+</html>
