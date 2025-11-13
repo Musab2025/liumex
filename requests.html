@@ -3,43 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>الطلبات تحت المعالجة | Liumex Server</title>
+  <title>إدارة الطلبات | Liumex Server</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#0e1630;--card:rgba(255,255,255,0.05);--accent:#00bfff;
-      --muted:#aab3c8;--text:#f3f6fb;--radius:14px;
+    :root {
+      --bg:#0e1630; --card:rgba(255,255,255,0.05); --accent:#00bfff;
+      --muted:#aab3c8; --text:#f3f6fb; --radius:14px;
       font-family:'Cairo',sans-serif;
     }
-    body{
-      margin:0;
-      min-height:100vh;
+    body {
+      margin:0; min-height:100vh;
       background:linear-gradient(180deg,#071029 0%,#0e1630 100%);
       color:var(--text);
     }
-    header{
+    header {
       padding:18px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      display:flex; align-items:center; justify-content:center;
       background:linear-gradient(90deg,#0f1a3a,#071029);
       border-bottom:1px solid rgba(255,255,255,0.05);
       box-shadow:0 2px 8px rgba(0,0,0,0.3);
     }
-    .brand{display:flex;gap:10px;align-items:center;}
-    .logo{
-      width:48px;height:48px;
-      border-radius:12px;
+    .brand { display:flex; gap:10px; align-items:center; }
+    .logo {
+      width:48px; height:48px; border-radius:12px;
       background:linear-gradient(135deg,#00bfff,#3aa0ff);
-      color:#021423;
-      display:flex;align-items:center;justify-content:center;
-      font-weight:900;font-size:20px;
+      color:#021423; display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:20px;
       box-shadow:0 0 10px rgba(0,191,255,0.4);
     }
-    .brand-title{font-size:20px;font-weight:700;}
-    main{max-width:900px;margin:30px auto;padding:0 16px;}
-    h1{text-align:center;font-size:22px;margin-bottom:20px;color:var(--accent);}
-    .order-card{
+    .brand-title { font-size:20px; font-weight:700; }
+    main { max-width:900px; margin:30px auto; padding:0 16px; }
+    h1 { text-align:center; font-size:22px; margin-bottom:20px; color:var(--accent); }
+
+    /* فلترة */
+    .filters {
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      margin-bottom:20px;
+    }
+    .filter-btn {
+      background:rgba(255,255,255,0.08);
+      border:none; border-radius:10px;
+      padding:7px 14px;
+      color:var(--text);
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+      transition:background .2s, transform .2s;
+    }
+    .filter-btn.active {
+      background:var(--accent);
+      color:#021423;
+      transform:scale(1.05);
+    }
+
+    .order-card {
       background:var(--card);
       border-radius:var(--radius);
       padding:16px;
@@ -47,24 +66,61 @@
       box-shadow:0 8px 24px rgba(0,0,0,0.4);
       transition:transform .2s,box-shadow .2s;
     }
-    .order-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,0.45);}
-    .order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-    .order-service{font-weight:700;color:var(--accent);}
-    .order-status{
-      padding:6px 12px;border-radius:8px;font-size:13px;
+    .order-card:hover {
+      transform:translateY(-4px);
+      box-shadow:0 14px 40px rgba(0,0,0,0.45);
+    }
+    .order-header {
+      display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
+    }
+    .order-service { font-weight:700; color:var(--accent); }
+    .order-status {
+      padding:6px 12px; border-radius:8px; font-size:13px;
       background:rgba(0,191,255,0.08);
     }
-    .done{background:rgba(50,200,120,0.15)!important;color:#7ef2a1!important;}
-    .order-body{font-size:14px;color:var(--muted);}
-    .order-body div{margin-top:4px;}
-    .footer{text-align:center;margin-top:30px;font-size:13px;color:var(--muted);}
-    .btn{
-      background:var(--accent);color:#021423;border:none;padding:8px 12px;border-radius:10px;cursor:pointer;
-      font-weight:700;box-shadow:0 4px 16px rgba(0,191,255,0.2);
-      font-size:13px;
+    .done { background:rgba(50,200,120,0.15)!important; color:#7ef2a1!important; }
+    .order-body { font-size:14px; color:var(--muted); }
+    .order-body div { margin-top:4px; }
+    .footer { text-align:center; margin-top:30px; font-size:13px; color:var(--muted); }
+
+    .btn {
+      border:none; border-radius:10px; cursor:pointer;
+      font-weight:700; box-shadow:0 4px 16px rgba(0,191,255,0.2);
+      padding:7px 12px; font-size:13px; margin-left:6px;
+      transition:opacity .2s;
     }
-    .btn-small{padding:6px 10px;font-size:12px;}
-    .btn-done{background:#7ef2a1;color:#022;}
+    .btn:hover { opacity:0.85; }
+    .btn-accent { background:var(--accent); color:#021423; }
+    .btn-done { background:#7ef2a1; color:#022; }
+    .btn-delete { background:#ff5c5c; color:#fff; }
+    .actions { margin-top:10px; text-align:left; }
+
+    /* Toast Notifications */
+    .toast-container {
+      position:fixed;
+      bottom:20px; right:20px;
+      display:flex; flex-direction:column; gap:10px;
+      z-index:9999;
+    }
+    .toast {
+      background:rgba(255,255,255,0.1);
+      border-left:6px solid var(--accent);
+      padding:12px 16px;
+      border-radius:12px;
+      box-shadow:0 4px 18px rgba(0,0,0,0.4);
+      font-weight:600;
+      animation:slideIn .4s ease, fadeOut 0.5s ease 3s forwards;
+    }
+    .toast.success { border-color:#7ef2a1; color:#7ef2a1; }
+    .toast.error { border-color:#ff5c5c; color:#ff5c5c; }
+    .toast.warn { border-color:#ffcc00; color:#ffcc00; }
+    @keyframes slideIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeOut {
+      to { opacity:0; transform:translateY(20px); }
+    }
   </style>
 </head>
 <body>
@@ -80,10 +136,18 @@
 
   <main>
     <h1>📦 الطلبات الحالية</h1>
+
+    <!-- فلترة الطلبات -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter('all')">الكل 🔁</button>
+      <button class="filter-btn" onclick="setFilter('pending')">تحت المعالجة ⏳</button>
+      <button class="filter-btn" onclick="setFilter('done')">المكتملة ✅</button>
+    </div>
+
     <div id="orders-container"></div>
 
     <div style="text-align:center">
-      <button class="btn" onclick="window.location.href='index.html'">🔙 رجوع إلى الصفحة الرئيسية</button>
+      <button class="btn btn-accent" onclick="window.location.href='index.html'">🔙 رجوع إلى الصفحة الرئيسية</button>
     </div>
   </main>
 
@@ -91,26 +155,48 @@
     &copy; 2025 Liumex Server — جميع الحقوق محفوظة.
   </footer>
 
+  <div class="toast-container" id="toastContainer"></div>
+
   <script>
     const container = document.getElementById('orders-container');
+    const toastContainer = document.getElementById('toastContainer');
     let orders = JSON.parse(localStorage.getItem('liumexOrders') || '[]');
+    let currentFilter = 'all';
 
     function saveOrders() {
       localStorage.setItem('liumexOrders', JSON.stringify(orders));
     }
 
+    function showToast(message, type='success') {
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.innerText = message;
+      toastContainer.appendChild(toast);
+      setTimeout(() => toast.remove(), 3500);
+    }
+
     function renderOrders() {
       container.innerHTML = '';
-      if (orders.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:var(--muted)">لا توجد طلبات حالياً</p>';
+      let filtered = orders;
+
+      if (currentFilter === 'done') {
+        filtered = orders.filter(o => o.status === 'done');
+      } else if (currentFilter === 'pending') {
+        filtered = orders.filter(o => o.status !== 'done');
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:var(--muted)">⚠️ لا توجد طلبات حالياً</p>';
+        showToast('لا توجد طلبات حالياً', 'warn');
         return;
       }
 
-      orders.forEach((order, i) => {
+      filtered.forEach((order, i) => {
         const card = document.createElement('div');
         card.className = 'order-card';
         const statusClass = order.status === 'done' ? 'order-status done' : 'order-status';
         const statusText = order.status === 'done' ? '✅ مكتمل' : '⌛ تحت المعالجة';
+
         card.innerHTML = `
           <div class="order-header">
             <div class="order-service">${order.service}</div>
@@ -122,7 +208,10 @@
             <div>📞 الهاتف: ${order.phone || 'غير محدد'}</div>
             <div>🕓 وقت الإرسال: ${order.time}</div>
           </div>
-          ${order.status !== 'done' ? `<button class="btn btn-small btn-done" onclick="markDone(${i})">تم الإنجاز ✅</button>` : ''}
+          <div class="actions">
+            ${order.status !== 'done' ? `<button class="btn btn-done" onclick="markDone(${i})">تم الإنجاز ✅</button>` : ''}
+            <button class="btn btn-delete" onclick="deleteOrder(${i})">🗑️ حذف</button>
+          </div>
         `;
         container.appendChild(card);
       });
@@ -131,6 +220,24 @@
     function markDone(index) {
       orders[index].status = 'done';
       saveOrders();
+      renderOrders();
+      showToast('✅ تم تحديث الطلب إلى مكتمل', 'success');
+    }
+
+    function deleteOrder(index) {
+      if (confirm('هل تريد حذف هذا الطلب نهائيًا؟')) {
+        orders.splice(index, 1);
+        saveOrders();
+        renderOrders();
+        showToast('🗑️ تم حذف الطلب بنجاح', 'error');
+      }
+    }
+
+    function setFilter(type) {
+      currentFilter = type;
+      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.querySelector(`.filter-btn[onclick*="${type}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
       renderOrders();
     }
 
