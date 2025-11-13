@@ -175,4 +175,119 @@ window.location.href = 'requests.html';class="ok"></div>
     }
   </script>
 </body>
+</html><!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>الطلبات تحت المعالجة | Liumex Server</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0e1630;--card:rgba(255,255,255,0.05);--accent:#00bfff;
+      --muted:#aab3c8;--text:#f3f6fb;--radius:14px;
+      font-family:'Cairo',sans-serif;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      background:linear-gradient(180deg,#071029 0%,#0e1630 100%);
+      color:var(--text);
+    }
+    header{
+      padding:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(90deg,#0f1a3a,#071029);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+      box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    }
+    .brand{display:flex;gap:10px;align-items:center;}
+    .logo{
+      width:48px;height:48px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#00bfff,#3aa0ff);
+      color:#021423;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:20px;
+      box-shadow:0 0 10px rgba(0,191,255,0.4);
+    }
+    .brand-title{font-size:20px;font-weight:700;}
+    main{max-width:900px;margin:30px auto;padding:0 16px;}
+    h1{text-align:center;font-size:22px;margin-bottom:20px;color:var(--accent);}
+    .order-card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:16px;
+      margin-bottom:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.4);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .order-card:hover{transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,0.45);}
+    .order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+    .order-service{font-weight:700;color:var(--accent);}
+    .order-status{background:rgba(0,191,255,0.08);padding:6px 12px;border-radius:8px;font-size:13px;}
+    .order-body{font-size:14px;color:var(--muted);}
+    .order-body div{margin-top:4px;}
+    .footer{text-align:center;margin-top:30px;font-size:13px;color:var(--muted);}
+    .btn{
+      background:var(--accent);color:#021423;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;
+      font-weight:700;box-shadow:0 4px 16px rgba(0,191,255,0.2);
+      margin-top:12px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">LS</div>
+      <div>
+        <div class="brand-title">Liumex Server</div>
+        <div style="color:var(--muted);font-size:13px;">الطلبات تحت المعالجة</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <h1>📦 الطلبات الحالية</h1>
+    <div id="orders-container"></div>
+
+    <div style="text-align:center">
+      <button class="btn" onclick="window.location.href='index.html'">🔙 رجوع إلى الصفحة الرئيسية</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    &copy; 2025 Liumex Server — جميع الحقوق محفوظة.
+  </footer>
+
+  <script>
+    // جلب الطلبات من التخزين المحلي (تم حفظها عند الإرسال من index.html)
+    const orders = JSON.parse(localStorage.getItem('liumexOrders') || '[]');
+    const container = document.getElementById('orders-container');
+
+    if (orders.length === 0) {
+      container.innerHTML = '<p style="text-align:center;color:var(--muted)">لا توجد طلبات حالياً</p>';
+    } else {
+      orders.forEach(order => {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        card.innerHTML = `
+          <div class="order-header">
+            <div class="order-service">${order.service}</div>
+            <div class="order-status">⌛ تحت المعالجة</div>
+          </div>
+          <div class="order-body">
+            <div>📱 IMEI/SN: ${order.imei || order.sn || '—'}</div>
+            <div>👤 الاسم: ${order.name || 'غير محدد'}</div>
+            <div>📞 الهاتف: ${order.phone || 'غير محدد'}</div>
+            <div>🕓 وقت الإرسال: ${order.time}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
 </html>
