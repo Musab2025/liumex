@@ -1,439 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الخدمات الإلكترونية | Liumexcode</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap');
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #0d0d2b, #1b1b4d);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    header {
-      background: rgba(0,0,0,0.4);
-      padding: 1rem;
-      font-size: 1.4rem;
-      color: #00bfff;
-      font-weight: 600;
-    }
-    .service {
-      background: rgba(255,255,255,0.08);
-      margin: 1rem auto;
-      padding: 1.5rem;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      text-align: right;
-      direction: rtl;
-      backdrop-filter: blur(10px);
-      transition: 0.3s;
-    }
-    .service:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,0.12);
-    }
-    .service h3 {
-      color: #00bfff;
-      margin-top: 0;
-    }
-    .price {
-      color: #00bfff;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-    button {
-      background: #00bfff;
-      border: none;
-      color: #fff;
-      padding: 0.7rem 1.2rem;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 1rem;
-      transition: 0.3s;
-      font-size: 1rem;
-      width: 100%;
-    }
-    button:hover {
-      background: #0095cc;
-    }
-    .form-box {
-      display: none;
-      margin-top: 1rem;
-      background: rgba(255,255,255,0.1);
-      padding: 1rem;
-      border-radius: 10px;
-    }
-    input {
-      width: 100%;
-      padding: 0.6rem;
-      border: none;
-      border-radius: 8px;
-      margin: 0.5rem 0;
-      background: rgba(255,255,255,0.15);
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
-    }
-    input::placeholder {
-      color: #ccc;
-    }
-    .success {
-      color: #00ff99;
-      font-weight: bold;
-      margin-top: 0.5rem;
-    }
-  </style>
-</head>
-<body>
-  <header>💻 الخدمات الإلكترونية — Liumexcode</header>
-
-  <section id="services">
-
-    <!-- خدمة فتح سامسونج -->
-    <div class="service">
-      <h3>🔓 فتح أجهزة سامسونج</h3>
-      <p>مدة التنفيذ: 1-5 دقائق</p>
-      <p>المطلوب: IMEI</p>
-      <p class="price">السعر: 16$</p>
-      <button onclick="toggleForm('samsungForm')">طلب الخدمة</button>
-      <div id="samsungForm" class="form-box">
-        <input type="text" id="imeiSamsung" placeholder="أدخل رقم IMEI" required>
-        <button onclick="submitRequest('samsung')">إرسال الطلب</button>
-        <p id="successSamsung" class="success"></p>
-      </div>
-    </div>
-
-    <!-- خدمة فتح هونر -->
-    <div class="service">
-      <h3>🔓 إزالة FRP لهواتف هونر</h3>
-      <p>مدة التنفيذ: 10 دقائق</p>
-      <p>المطلوب: الرقم التسلسلي SN</p>
-      <p class="price">السعر: 10$</p>
-      <button onclick="toggleForm('honorForm')">طلب الخدمة</button>
-      <div id="honorForm" class="form-box">
-        <input type="text" id="snHonor" placeholder="أدخل الرقم التسلسلي SN" required>
-        <button onclick="submitRequest('honor')">إرسال الطلب</button>
-        <p id="successHonor" class="success"></p>
-      </div>
-    </div>
-
-    <!-- خدمة iCloud -->
-    <div class="service">
-      <h3>🍏 فتح iCloud</h3>
-      <p>مدة التنفيذ: 30 دقيقة</p>
-      <p>المطلوب: الاسم + رقم الهاتف</p>
-      <p class="price">السعر: 15$</p>
-      <button onclick="toggleForm('icloudForm')">طلب الخدمة</button>
-      <div id="icloudForm" class="form-box">
-        <input type="text" id="icloudName" placeholder="الاسم الكامل" required>
-        <input type="text" id="icloudPhone" placeholder="رقم الهاتف" required>
-        <button onclick="submitRequest('icloud')">إرسال الطلب</button>
-        <p id="successIcloud" class="success"></p>
-      </div>
-    </div>
-
-    <!-- دعم فني -->
-    <div class="service">
-      <h3>🧩 الدعم الفني والاستشارة</h3>
-      <p>مدة الرد: 5 دقائق</p>
-      <p>الخدمة مجانية</p>
-      <p class="price">السعر: 0$</p>
-      <button onclick="toggleForm('supportForm')">طلب الخدمة</button>
-      <div id="supportForm" class="form-box">
-        <input type="text" id="supportMsg" placeholder="صف مشكلتك باختصار" required>
-        <button onclick="submitRequest('support')">إرسال الطلب</button>
-        <p id="successSupport" class="success"></p>
-      </div>
-    </div>
-
-  </section>
-
-  <script>
-    function toggleForm(id) {
-      const form = document.getElementById(id);
-      form.style.display = (form.style.display === "block") ? "none" : "block";
-    }
-
-    function submitRequest(type) {
-      let message = "";
-      if (type === "samsung") {
-        const imei = document.getElementById("imeiSamsung").value.trim();
-        if (!imei) return alert("الرجاء إدخال رقم IMEI");
-        message = `تم استلام طلب فتح سامسونج برقم IMEI: ${imei}`;
-        document.getElementById("successSamsung").innerText = message;
-      } 
-      else if (type === "honor") {
-        const sn = document.getElementById("snHonor").value.trim();
-        if (!sn) return alert("الرجاء إدخال الرقم التسلسلي SN");
-        message = `تم استلام طلب إزالة FRP لهاتف هونر برقم SN: ${sn}`;
-        document.getElementById("successHonor").innerText = message;
-      }
-      else if (type === "icloud") {
-        const name = document.getElementById("icloudName").value.trim();
-        const phone = document.getElementById("icloudPhone").value.trim();
-        if (!name || !phone) return alert("الرجاء إدخال الاسم ورقم الهاتف");
-        message = `تم استلام طلب فتح iCloud من ${name}، رقم الهاتف: ${phone}`;
-        document.getElementById("successIcloud").innerText = message;
-      }
-      else if (type === "support") {
-        const msg = document.getElementById("supportMsg").value.trim();
-        if (!msg) return alert("الرجاء كتابة الرسالة");
-        message = `تم استلام طلب الدعم الفني: ${msg}`;
-        document.getElementById("successSupport").innerText = message;
-      }
-      alert("✅ " + message);
-    }
-  </script>
-</body>
-</html><!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>إدارة الطلبات | Liumex Server</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Liumex Server — الخدمات الإلكترونية</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:#0e1630; --card:rgba(255,255,255,0.05); --accent:#00bfff;
-      --muted:#aab3c8; --text:#f3f6fb; --radius:14px;
-      font-family:'Cairo',sans-serif;
+      --bg:#0e1630; --card:rgba(255,255,255,0.04); --accent:#00bfff;
+      --muted:#aab3c8; --glass:rgba(255,255,255,0.03);
+      --radius:14px; --text:#f3f6fb; font-family:'Cairo',sans-serif;
     }
-    body {
-      margin:0; min-height:100vh;
-      background:linear-gradient(180deg,#071029 0%,#0e1630 100%);
-      color:var(--text);
-    }
-    header {
-      padding:18px;
-      display:flex; align-items:center; justify-content:center;
-      background:linear-gradient(90deg,#0f1a3a,#071029);
-      border-bottom:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 2px 8px rgba(0,0,0,0.3);
-    }
-    .brand { display:flex; gap:10px; align-items:center; }
-    .logo {
-      width:48px; height:48px; border-radius:12px;
-      background:linear-gradient(135deg,#00bfff,#3aa0ff);
-      color:#021423; display:flex; align-items:center; justify-content:center;
-      font-weight:900; font-size:20px;
-      box-shadow:0 0 10px rgba(0,191,255,0.4);
-    }
-    .brand-title { font-size:20px; font-weight:700; }
-    main { max-width:900px; margin:30px auto; padding:0 16px; }
-    h1 { text-align:center; font-size:22px; margin-bottom:20px; color:var(--accent); }
-
-    /* فلترة */
-    .filters {
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      margin-bottom:20px;
-    }
-    .filter-btn {
-      background:rgba(255,255,255,0.08);
-      border:none; border-radius:10px;
-      padding:7px 14px;
-      color:var(--text);
-      cursor:pointer;
-      font-weight:600;
-      font-size:14px;
-      transition:background .2s, transform .2s;
-    }
-    .filter-btn.active {
-      background:var(--accent);
-      color:#021423;
-      transform:scale(1.05);
-    }
-
-    .order-card {
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:16px;
-      margin-bottom:16px;
-      box-shadow:0 8px 24px rgba(0,0,0,0.4);
-      transition:transform .2s,box-shadow .2s;
-    }
-    .order-card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 14px 40px rgba(0,0,0,0.45);
-    }
-    .order-header {
-      display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
-    }
-    .order-service { font-weight:700; color:var(--accent); }
-    .order-status {
-      padding:6px 12px; border-radius:8px; font-size:13px;
-      background:rgba(0,191,255,0.08);
-    }
-    .done { background:rgba(50,200,120,0.15)!important; color:#7ef2a1!important; }
-    .order-body { font-size:14px; color:var(--muted); }
-    .order-body div { margin-top:4px; }
-    .footer { text-align:center; margin-top:30px; font-size:13px; color:var(--muted); }
-
-    .btn {
-      border:none; border-radius:10px; cursor:pointer;
-      font-weight:700; box-shadow:0 4px 16px rgba(0,191,255,0.2);
-      padding:7px 12px; font-size:13px; margin-left:6px;
-      transition:opacity .2s;
-    }
-    .btn:hover { opacity:0.85; }
-    .btn-accent { background:var(--accent); color:#021423; }
-    .btn-done { background:#7ef2a1; color:#022; }
-    .btn-delete { background:#ff5c5c; color:#fff; }
-    .actions { margin-top:10px; text-align:left; }
-
-    /* Toast Notifications */
-    .toast-container {
-      position:fixed;
-      bottom:20px; right:20px;
-      display:flex; flex-direction:column; gap:10px;
-      z-index:9999;
-    }
-    .toast {
-      background:rgba(255,255,255,0.1);
-      border-left:6px solid var(--accent);
-      padding:12px 16px;
-      border-radius:12px;
-      box-shadow:0 4px 18px rgba(0,0,0,0.4);
-      font-weight:600;
-      animation:slideIn .4s ease, fadeOut 0.5s ease 3s forwards;
-    }
-    .toast.success { border-color:#7ef2a1; color:#7ef2a1; }
-    .toast.error { border-color:#ff5c5c; color:#ff5c5c; }
-    .toast.warn { border-color:#ffcc00; color:#ffcc00; }
-    @keyframes slideIn {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
-    }
-    @keyframes fadeOut {
-      to { opacity:0; transform:translateY(20px); }
-    }
+    body {margin:0;min-height:100vh;background:linear-gradient(180deg,#071029 0%, #0e1630 100%);color:var(--text)}
+    header {padding:18px;display:flex;gap:12px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.05);}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3aa0ff);display:flex;align-items:center;justify-content:center;color:#022033;font-weight:800}
+    .brand-title{font-weight:700;font-size:18px}
+    .container{max-width:980px;margin:18px auto;padding:0 16px}
+    .services-list{display:flex;flex-direction:column;gap:16px;margin-top:12px}
+    .service-card{background:var(--card);border-radius:var(--radius);padding:16px;display:flex;gap:14px;align-items:flex-start;transition:.2s;box-shadow:0 6px 25px rgba(0,0,0,0.3)}
+    .service-card:hover{transform:translateY(-5px)}
+    .service-title{color:var(--accent);margin:0 0 6px}
+    .service-desc{color:var(--muted);font-size:14px;margin:0 0 6px}
+    .service-meta{display:flex;gap:8px;align-items:center;margin-top:6px}
+    .price{background:rgba(0,191,255,0.1);color:var(--accent);padding:6px 10px;border-radius:8px;font-weight:700}
+    .eta{color:var(--muted);font-size:13px}
+    .btn{background:var(--accent);color:#022033;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;width:100%}
+    .btn:hover{opacity:.9}
+    .form-panel{margin-top:12px;background:var(--glass);padding:12px;border-radius:10px;display:none;gap:8px}
+    input,select{width:100%;padding:10px;border-radius:8px;border:none;background:rgba(255,255,255,0.05);color:var(--text)}
+    .small{font-size:13px;color:var(--muted);margin-top:6px}
+    /* Toast */
+    #toast{position:fixed;bottom:20px;right:20px;padding:14px 18px;border-radius:10px;font-weight:600;opacity:0;pointer-events:none;transition:.4s;font-size:14px}
+    #toast.show{opacity:1;pointer-events:auto;transform:translateY(-10px)}
+    #toast.success{background:#28c76f;color:#fff;}
+    #toast.error{background:#ea5455;color:#fff;}
+    #toast.info{background:#ffb703;color:#000;}
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <div class="logo">LS</div>
-      <div>
-        <div class="brand-title">Liumex Server</div>
-        <div style="color:var(--muted);font-size:13px;">إدارة الطلبات</div>
-      </div>
+  <header class="container">
+    <div class="logo">LS</div>
+    <div>
+      <div class="brand-title">Liumex Server</div>
+      <div style="color:var(--muted);font-size:13px">مركز Liumex للخدمات — طلبات سريعة</div>
     </div>
   </header>
 
-  <main>
-    <h1>📦 الطلبات الحالية</h1>
+  <main class="container">
+    <section class="services-list">
+      <article class="service-card">
+        <div style="flex:1">
+          <h3 class="service-title">🔓 إزالة FRP — سامسونج</h3>
+          <p class="service-desc">نقوم بفتح أجهزة سامسونج بسرعة. المطلوب: رقم IMEI (15 رقم).</p>
+          <div class="service-meta"><div class="price">16$</div><div class="eta">1-5 دقائق</div></div>
+          <div class="form-panel" id="panel-samsung">
+            <div class="small">أدخل رقم IMEI (15 رقم)</div>
+            <input type="text" id="imeiSamsung" placeholder="356938035643809">
+            <input type="text" id="nameSamsung" placeholder="الاسم (اختياري)">
+            <button class="btn" onclick="submitService('سامسونج')">إرسال الطلب</button>
+          </div>
+        </div>
+        <div style="width:160px"><button class="btn" onclick="togglePanel('panel-samsung')">طلب الخدمة</button></div>
+      </article>
 
-    <!-- فلترة الطلبات -->
-    <div class="filters">
-      <button class="filter-btn active" onclick="setFilter('all')">الكل 🔁</button>
-      <button class="filter-btn" onclick="setFilter('pending')">تحت المعالجة ⏳</button>
-      <button class="filter-btn" onclick="setFilter('done')">المكتملة ✅</button>
-    </div>
-
-    <div id="orders-container"></div>
-
-    <div style="text-align:center">
-      <button class="btn btn-accent" onclick="window.location.href='index.html'">🔙 رجوع إلى الصفحة الرئيسية</button>
-    </div>
+      <article class="service-card">
+        <div style="flex:1">
+          <h3 class="service-title">🔓 إزالة FRP — هونر</h3>
+          <p class="service-desc">نقبل SN أو IMEI لهواتف هونر لمعالجة الإزالة.</p>
+          <div class="service-meta"><div class="price">10$</div><div class="eta">~20 دقيقة</div></div>
+          <div class="form-panel" id="panel-honor">
+            <div class="small">أدخل SN أو IMEI</div>
+            <input type="text" id="snHonor" placeholder="SN أو IMEI">
+            <input type="text" id="nameHonor" placeholder="الاسم (اختياري)">
+            <button class="btn" onclick="submitService('هونر')">إرسال الطلب</button>
+          </div>
+        </div>
+        <div style="width:160px"><button class="btn" onclick="togglePanel('panel-honor')">طلب الخدمة</button></div>
+      </article>
+    </section>
   </main>
 
-  <footer class="footer">
-    &copy; 2025 Liumex Server — جميع الحقوق محفوظة.
-  </footer>
-
-  <div class="toast-container" id="toastContainer"></div>
+  <div id="toast"></div>
 
   <script>
-    const container = document.getElementById('orders-container');
-    const toastContainer = document.getElementById('toastContainer');
-    let orders = JSON.parse(localStorage.getItem('liumexOrders') || '[]');
-    let currentFilter = 'all';
-
-    function saveOrders() {
-      localStorage.setItem('liumexOrders', JSON.stringify(orders));
+    function togglePanel(id){
+      document.querySelectorAll('.form-panel').forEach(p=>{ if(p.id!==id) p.style.display='none'; });
+      const el=document.getElementById(id);
+      el.style.display=el.style.display==='block'?'none':'block';
+      setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),200);
     }
 
-    function showToast(message, type='success') {
-      const toast = document.createElement('div');
-      toast.className = `toast ${type}`;
-      toast.innerText = message;
-      toastContainer.appendChild(toast);
-      setTimeout(() => toast.remove(), 3500);
+    function showToast(msg,type='success'){
+      const toast=document.getElementById('toast');
+      toast.className='show '+type;
+      toast.textContent=msg;
+      setTimeout(()=>toast.className=toast.className.replace('show',''),3000);
     }
 
-    function renderOrders() {
-      container.innerHTML = '';
-      let filtered = orders;
-
-      if (currentFilter === 'done') {
-        filtered = orders.filter(o => o.status === 'done');
-      } else if (currentFilter === 'pending') {
-        filtered = orders.filter(o => o.status !== 'done');
+    function submitService(service){
+      let imei='', name='';
+      if(service==='سامسونج'){
+        imei=document.getElementById('imeiSamsung').value.trim();
+        name=document.getElementById('nameSamsung').value.trim();
+      } else {
+        imei=document.getElementById('snHonor').value.trim();
+        name=document.getElementById('nameHonor').value.trim();
       }
+      if(!imei){showToast('الرجاء إدخال IMEI أو SN','info');return;}
 
-      if (filtered.length === 0) {
-        container.innerHTML = '<p style="text-align:center;color:var(--muted)">⚠️ لا توجد طلبات حالياً</p>';
-        showToast('لا توجد طلبات حالياً', 'warn');
-        return;
-      }
-
-      filtered.forEach((order, i) => {
-        const card = document.createElement('div');
-        card.className = 'order-card';
-        const statusClass = order.status === 'done' ? 'order-status done' : 'order-status';
-        const statusText = order.status === 'done' ? '✅ مكتمل' : '⌛ تحت المعالجة';
-
-        card.innerHTML = `
-          <div class="order-header">
-            <div class="order-service">${order.service}</div>
-            <div class="${statusClass}">${statusText}</div>
-          </div>
-          <div class="order-body">
-            <div>📱 IMEI/SN: ${order.imei || order.sn || '—'}</div>
-            <div>👤 الاسم: ${order.name || 'غير محدد'}</div>
-            <div>📞 الهاتف: ${order.phone || 'غير محدد'}</div>
-            <div>🕓 وقت الإرسال: ${order.time}</div>
-          </div>
-          <div class="actions">
-            ${order.status !== 'done' ? `<button class="btn btn-done" onclick="markDone(${i})">تم الإنجاز ✅</button>` : ''}
-            <button class="btn btn-delete" onclick="deleteOrder(${i})">🗑️ حذف</button>
-          </div>
-        `;
-        container.appendChild(card);
-      });
+      const newOrder={id:Date.now(),service,imei,name,status:'قيد المعالجة'};
+      const orders=JSON.parse(localStorage.getItem('orders')||'[]');
+      orders.push(newOrder);
+      localStorage.setItem('orders',JSON.stringify(orders));
+      showToast('✅ تم استلام الطلب — تحت المعالجة','success');
+      setTimeout(()=>window.location.href='orders.html',1200);
     }
-
-    function markDone(index) {
-      orders[index].status = 'done';
-      saveOrders();
-      renderOrders();
-      showToast('✅ تم تحديث الطلب إلى مكتمل', 'success');
-    }
-
-    function deleteOrder(index) {
-      if (confirm('هل تريد حذف هذا الطلب نهائيًا؟')) {
-        orders.splice(index, 1);
-        saveOrders();
-        renderOrders();
-        showToast('🗑️ تم حذف الطلب بنجاح', 'error');
-      }
-    }
-
-    function setFilter(type) {
-      currentFilter = type;
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.querySelector(`.filter-btn[onclick*="${type}"]`);
-      if (activeBtn) activeBtn.classList.add('active');
-      renderOrders();
-    }
-
-    renderOrders();
   </script>
 </body>
 </html>
