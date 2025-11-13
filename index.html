@@ -108,8 +108,14 @@
           <input type="text" id="snHonor" placeholder="SN أو IMEI" />
           <input type="text" id="nameHonor" placeholder="الاسم (اختياري)" />
           <input type="tel" id="phoneHonor" placeholder="رقم الهاتف (اختياري)" />
-          <button class="btn" onclick="submitService('honor')">إرسال الطلب</button>
-          <div id="ok-honor" class="ok"></div>
+          <button class="btn" onclick="submitService('honor')">إرسال الطلب // حفظ الطلب في localStorage
+let oldOrders = JSON.parse(localStorage.getItem('liumexOrders') || '[]');
+info.time = new Date().toLocaleString('ar-EG');
+oldOrders.push(info);
+localStorage.setItem('liumexOrders', JSON.stringify(oldOrders));
+
+// فتح صفحة الطلبات
+window.location.href = 'requests.html';class="ok"></div>
         </div>
       </article>
 
